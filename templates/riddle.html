@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Riddle {{ num }} dari {{ total }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Ripple untuk tombol -->
+  <script>
+    document.addEventListener('pointerdown', e => {
+      const t = e.target.closest('button,.button');
+      if (!t) return;
+      const r = t.getBoundingClientRect();
+      t.style.setProperty('--x', (e.clientX - r.left) + 'px');
+      t.style.setProperty('--y', (e.clientY - r.top) + 'px');
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header class="app">
+      <h1>💖 Love Hunt</h1>
+      <p>Pertanyaan {{ num }} dari {{ total }}</p>
+    </header>
+
+    <section class="card glass gradient-border tilt" style="animation-delay:.06s">
+      <!-- Progress bar -->
+      <div class="progress" aria-label="progress">
+        <span style="--w: {{ (num/total*100)|int }}%"></span>
+      </div>
+
+      <!-- Pertanyaan (hormati baris baru dari JSON) -->
+      <p>{{ r.question.replace('\n','<br>') | safe }}</p>
+
+      <!-- Form jawaban -->
+      <form method="post" class="mt-16">
+        {% if r.options %}
+          <div class="options">
+            {% for option in r.options %}
+              <label class="option" style="--delay: {{ loop.index0*60 }}ms">
+                <input type="radio" name="answer" value="{{ option|lower }}" required>
+                <span>{{ option }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        {% else %}
+          <input type="text" name="answer" required placeholder="Ketik jawabanmu di sini">
+        {% endif %}
+
+        <div class="mt-16">
+          <button type="submit" class="button shine">Kirim</button>
+        </div>
+      </form>
+
+      <!-- Flash message hanya saat salah -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="flash mt-16">
+            {% for msg in messages %}<div>{{ msg }}</div>{% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    </section>
+  </div>
+</body>
+</html>

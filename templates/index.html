@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>143</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Ripple untuk tombol -->
+  <script>
+    document.addEventListener('pointerdown', e => {
+      const t = e.target.closest('button,.button');
+      if (!t) return;
+      const r = t.getBoundingClientRect();
+      t.style.setProperty('--x', (e.clientX - r.left) + 'px');
+      t.style.setProperty('--y', (e.clientY - r.top) + 'px');
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header class="app">
+      <h1>💖 Happy Birthday</h1>
+      <p>Seseorang harus berusaha dulu untuk mendapatkan sesuatu</p>
+    </header>
+
+    <section class="card glass gradient-border tilt" style="text-align:center; animation-delay:.08s">
+      <p>Jawab semua pertanyaan dan temukan kado dari aku✨</p>
+      <form action="{{ url_for('start') }}" method="post" style="margin-top:20px">
+        <button type="submit" class="button shine">Mulai Petualangan</button>
+      </form>
+      <p class="hint-small mt-16">
+        Semangat ya, semua jawaban kamu adalah koentji 💙
+      </p>
+    </section>
+  </div>
+</body>
+</html>

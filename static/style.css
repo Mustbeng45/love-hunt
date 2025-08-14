@@ -1,0 +1,232 @@
+/* ===== Elegant Minimal Blue Glass • Advanced + Pro Polish ===== */
+:root {
+  --bg1: #f4f9ff;
+  --bg2: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --brand: #2563eb;       /* biru utama */
+  --brand-2: #1d4ed8;     /* hover */
+  --ring: rgba(37, 99, 235, 0.25);
+  --card-shadow: 0 12px 32px rgba(2, 6, 23, .08);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #e0f2fe 0%, transparent 60%),
+    radial-gradient(1000px 500px at 110% 0%, #dbeafe 0%, transparent 60%),
+    var(--bg1);
+  /* animasi background halus */
+  background-size: 100% 100%;
+  animation: bgFloat 14s ease-in-out infinite alternate;
+}
+
+/* ===== Layout & Card ===== */
+.container {
+  max-width: 760px;
+  margin: 64px auto;
+  padding: 0 24px;
+}
+
+.card {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 28px;
+  animation: fadeUp .6s ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glass variant */
+.glass {
+  background: rgba(255, 255, 255, 0.40);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 24px 52px rgba(37, 99, 235, 0.09);
+}
+
+/* Header */
+header.app { text-align: center; margin-bottom: 18px; }
+header.app h1 { font-size: 34px; margin: 0 0 6px; letter-spacing: .3px; }
+header.app p  { color: var(--muted); margin: 0; }
+
+/* Typography */
+h2 { margin: 0 0 12px; font-size: 24px; }
+p  { line-height: 1.65; font-size: 17px; }
+
+/* ===== Buttons (ripple + shine) ===== */
+.button, button {
+  display: inline-block;
+  border: 0; border-radius: 12px;
+  background: var(--brand); color: #fff;
+  padding: 12px 18px; font-size: 16px; cursor: pointer;
+  box-shadow: 0 8px 22px var(--ring);
+  transition: transform .08s ease, background .2s ease, box-shadow .2s ease;
+  position: relative; overflow: hidden;
+}
+.button:hover, button:hover { background: var(--brand-2); transform: translateY(-1px); }
+button::after, .button::after {
+  /* ripple glow mengikuti --x/--y dari JS di template */
+  content: ""; position: absolute; inset: 0; border-radius: inherit; opacity: 0;
+  background: radial-gradient(120px 120px at var(--x, 50%) var(--y, 50%), rgba(255,255,255,.35), transparent 60%);
+  transition: opacity .2s ease;
+}
+button:active::after, .button:active::after { opacity: 1; transition: opacity .05s ease; }
+
+/* Shine strip */
+.button.shine, button.shine { position: relative; overflow: hidden; }
+.button.shine::before, button.shine::before {
+  content: "";
+  position: absolute; top: 0; left: -120%;
+  width: 120%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+  transform: skewX(-20deg);
+  transition: left .6s ease;
+}
+.button.shine:hover::before, button.shine:hover::before { left: 120%; }
+
+/* ===== Inputs ===== */
+input[type="text"], input[type="password"] {
+  width: 100%; padding: 12px 14px; font-size: 16px;
+  border: 1px solid #e2e8f0; border-radius: 12px; outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .06s ease;
+}
+input:focus {
+  border-color: var(--brand-2);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* ===== Options (radio) ===== */
+.options { margin: 12px 0 6px; }
+.option {
+  --delay: 0ms;
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 12px;
+  padding: 12px 14px; margin: 10px 0; cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  animation: fadeUp .5s ease both; animation-delay: var(--delay);
+}
+.option:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(0,0,0,.06); }
+.option input { accent-color: var(--brand); }
+
+/* ===== Flash / Helper ===== */
+.flash {
+  margin-top: 12px; color: #1e3a8a; background: #e0f2fe;
+  border: 1px solid #bae6fd; padding: 10px 12px; border-radius: 10px;
+}
+.error-text { color: #b91c1c; }
+.hint-small  { color: var(--muted); font-size: 14px; }
+
+/* ===== Message Box (secret text) ===== */
+.message-box {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 18px; text-align: left;
+  box-shadow: var(--card-shadow);
+}
+.message-box pre {
+  margin: 0; white-space: pre-wrap; word-wrap: break-word;
+  font-family: inherit; font-size: 17px; line-height: 1.7;
+}
+
+/* ===== Progress Bar ===== */
+.progress {
+  height: 10px; background: #e2e8f0; border-radius: 999px; overflow: hidden; margin: 12px 0 18px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.05);
+}
+.progress > span {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, #60a5fa, var(--brand));
+  width: var(--w, 0%); border-radius: inherit;
+  box-shadow: 0 6px 18px var(--ring);
+  transition: width .5s ease;
+}
+
+/* ===== Confetti helper (dipakai lewat JS di template) ===== */
+.confetti {
+  position: fixed; top: -10px; width: 8px; height: 14px; pointer-events: none; z-index: 9999;
+  opacity: .9; border-radius: 2px;
+  animation: drop var(--dur) linear forwards;
+}
+
+/* ===== Professional Polish ===== */
+/* Gradient border elegan */
+.card.gradient-border { position: relative; z-index: 0; }
+.card.gradient-border::before {
+  content: ""; position: absolute; inset: -1px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #93c5fd, #2563eb, #60a5fa);
+  z-index: -1; opacity: .75; filter: blur(.2px);
+}
+.card.gradient-border::after {
+  content: ""; position: absolute; inset: 1px;
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--bg2); z-index: -1;
+}
+
+/* Tilt 3D halus */
+.tilt { will-change: transform; }
+.tilt:hover {
+  transform: perspective(800px) rotateX(1.2deg) rotateY(-1.2deg) translateY(-2px);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+/* Animated underline untuk link */
+a.uline { position: relative; text-decoration: none; }
+a.uline::after {
+  content: ""; position: absolute; left: 0; bottom: -2px;
+  width: 0%; height: 2px; background: linear-gradient(90deg, #60a5fa, #2563eb);
+  transition: width .25s ease;
+}
+a.uline:hover::after { width: 100%; }
+
+/* Aksesibilitas: focus ring */
+:focus-visible {
+  outline: 3px solid rgba(37,99,235,.35);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ===== Dark Mode ===== */
+:root[data-theme="dark"] {
+  --bg1: #0b1220;
+  --bg2: #0f172a;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --brand: #3b82f6;
+  --brand-2: #2563eb;
+  --ring: rgba(59, 130, 246, 0.25);
+}
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #0b2a4b 0%, transparent 60%),
+    radial-gradient(1000px 500px at 110% 0%, #0b2a4b 0%, transparent 60%),
+    var(--bg1);
+}
+:root[data-theme="dark"] .card.gradient-border::after { background: var(--bg2); }
+:root[data-theme="dark"] .option,
+:root[data-theme="dark"] .message-box { border-color: #1f2a44; background:#0f172a; }
+:root[data-theme="dark"] .flash { background:#0b2a4b; border-color:#134e78; color:#cde8ff; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* Utils */
+.center { text-align: center; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+
+/* ===== Keyframes ===== */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: none } }
+@keyframes bgFloat {
+  0% { background-position: 0% 0%, 100% 0%, 0 0 }
+  100% { background-position: 2% 1%, 98% 1%, 0 0 }
+}
+@keyframes drop { to { transform: translateY(110vh) rotate(360deg); opacity: 1; } }

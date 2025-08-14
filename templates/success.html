@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kamu Berhasil!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Ripple untuk tombol -->
+  <script>
+    document.addEventListener('pointerdown', e => {
+      const t = e.target.closest('button,.button');
+      if (!t) return;
+      const r = t.getBoundingClientRect();
+      t.style.setProperty('--x', (e.clientX - r.left) + 'px');
+      t.style.setProperty('--y', (e.clientY - r.top) + 'px');
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header class="app">
+      <h1>🎉 Selamat!</h1>
+      <p>1 Langkah lagi kamu akan tau dimana kado dari aku disimpan</p>
+    </header>
+
+    <section class="card glass gradient-border tilt" style="animation-delay:.06s; text-align:center">
+      <h2>Clue Hadiah</h2>
+      <p>
+        Ingat!! Jawaban kamu adalah Koentji<br>
+        Warna<br>
+        Huruf<br>
+        Kendaraan<br>
+        Bagian<br>
+        dan 2520, ini bukan angka random.<br><br>
+        Satukan semuanya... di sanalah kado itu aku simpan.
+      </p>
+      <p>
+        Dibawah ini juga ada pesan khusus dari aku<br>
+        Kamu akan temukan kode akses di dalam kado tersebut<br>
+    </p>
+    
+      <a class="button shine mt-16" href="{{ url_for('message') }}">Buka Pesan Rahasia</a>
+      <p class="hint-small mt-16">
+        (Kalau bingung, ingat semua jawabannya dan baca kembali pelan-pelan 😉)
+      </p>
+    </section>
+  </div>
+
+  <!-- Confetti saat halaman dibuka -->
+  <script>
+    (function confetti(){
+      const colors = ['#60a5fa','#93c5fd','#1d4ed8','#2563eb','#bfdbfe'];
+      for(let i=0;i<60;i++){
+        const s = document.createElement('span');
+        s.className = 'confetti';
+        s.style.left = Math.random()*100 + 'vw';
+        s.style.background = colors[Math.floor(Math.random()*colors.length)];
+        s.style.transform = `translateY(-10px) rotate(${Math.random()*360}deg)`;
+        s.style.animationDelay = (Math.random()*0.6)+'s';
+        s.style.setProperty('--dur', (4 + Math.random()*2)+'s');
+        s.style.borderRadius = Math.random()>.5 ? '2px' : '50%';
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(), 7000);
+      }
+    })();
+  </script>
+</body>
+</html>

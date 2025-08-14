@@ -1,0 +1,57 @@
+[
+  {
+    "question": "Aku adalah warna yang penuh semangat dan berani.\nAku sering membuat kendaraan berhenti di jalanan,\nAku ada di bendera negara.\nWarna apakah aku?",
+    "options": [
+      "Merah",
+      "Biru",
+      "Kuning",
+      "Hijau",
+      "Hitam"
+    ],
+    "answer": "merah"
+  },
+  {
+    "question": "Aku hanya satu huruf, tapi aku penting.\nAku biasa di temukan di kendaraan di Jabodetabek,\nDalam kata bola. terdapat aku disana.\nHuruf apakah aku?",
+    "options": [
+      "A",
+      "C",
+      "D",
+      "B",
+      "E"
+    ],
+    "answer": "b"
+  },
+  {
+    "question": "Aku punya roda dan pintu.\nKau sering berpergian menggunakan aku,\nOrang tuamu yang memberi aku untukmu.\nSiapakah aku?",
+    "options": [
+      "Motor",
+      "Sepeda",
+      "Bus",
+      "Mobil",
+      "Kapal"
+    ],
+    "answer": "mobil"
+  },
+  {
+    "question": "Aku selalu ikut bepergian, tapi bukan penumpang.\nAku membawa banyak barang, tapi tidak punya tangan.\nAku berada di bagian bawah atau belakang kendaraan.\nSiapakah aku?",
+    "options": [
+      "Spion",
+      "Ban",
+      "Jok",
+      "Kopling",
+      "Bagasi"
+    ],
+    "answer": "bagasi"
+  },
+  {
+    "question": "Berapa hasil dari 7 x 9 x 10 x 4",
+    "options": [
+      "2520",
+      "2010",
+      "2020",
+      "2064",
+      "2099"
+    ],
+    "answer": "2520"
+  }
+]

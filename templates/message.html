@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pesan Rahasia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Ripple untuk tombol -->
+  <script>
+    document.addEventListener('pointerdown', e => {
+      const t = e.target.closest('button,.button');
+      if (!t) return;
+      const r = t.getBoundingClientRect();
+      t.style.setProperty('--x', (e.clientX - r.left) + 'px');
+      t.style.setProperty('--y', (e.clientY - r.top) + 'px');
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header class="app">
+      <h1>🔐 Pesan Rahasia</h1>
+      {% if not revealed %}
+        <p class="hint-small">Tahap terakhir—masukkan kunci dari hadiahmu.</p>
+      {% endif %}
+    </header>
+
+    <section class="card glass gradient-border tilt" style="animation-delay:.06s">
+      {% if not revealed %}
+        <p>
+          Kamu sudah sampai di sini, tandanya kamu sudah menemukan kado dariku.<br>
+          Semoga kamu suka kado sederhana dariku <br>
+          Masukkan password untuk membuka pesan rahasia ini ❤️
+        </p>
+
+        <form method="post" class="mt-16">
+          <label>Masukkan password:</label>
+          <input type="password" name="password" required placeholder="•••••••">
+          <div class="mt-16">
+            <button type="submit" class="button shine">Buka</button>
+          </div>
+        </form>
+
+        {% if error %}
+          <div class="flash error-text mt-16">{{ error }}</div>
+        {% endif %}
+      {% else %}
+        <h2>Pesan dari aku:</h2>
+        <div class="message-box mt-16">
+          <!-- pertahankan enter & spasi seperti di pesan.txt -->
+          <pre>{{ revealed }}</pre>
+        </div>
+        <p class="hint-small mt-16">Terima kasih sudah mau untuk bersamaku ✨</p>
+
+        <!-- Confetti kecil saat pesan terbuka -->
+        <script>
+          (function confetti(){
+            const colors = ['#60a5fa','#93c5fd','#1d4ed8','#2563eb','#bfdbfe'];
+            for(let i=0;i<45;i++){
+              const s = document.createElement('span');
+              s.className = 'confetti';
+              s.style.left = Math.random()*100 + 'vw';
+              s.style.background = colors[Math.floor(Math.random()*colors.length)];
+              s.style.transform = `translateY(-10px) rotate(${Math.random()*360}deg)`;
+              s.style.animationDelay = (Math.random()*0.6)+'s';
+              s.style.setProperty('--dur', (4 + Math.random()*2)+'s');
+              s.style.borderRadius = Math.random()>.5 ? '2px' : '50%';
+              document.body.appendChild(s);
+              setTimeout(()=>s.remove(), 7000);
+            }
+          })();
+        </script>
+      {% endif %}
+    </section>
+  </div>
+</body>
+</html>
